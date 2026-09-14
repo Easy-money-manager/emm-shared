@@ -45,6 +45,10 @@ impl Sheet {
         }
     }
 
+    fn log_error(message: &str) {
+        eprintln!("SHEET ERROR: {}", message);
+    }
+
     pub fn id(&self) -> i64 {
         self.id
     }
@@ -80,6 +84,7 @@ impl Sheet {
     }
     pub fn remove(&mut self, index: usize) -> Result<(), SheetError> {
         if index >= self.len() {
+            Self::log_error(&"Trying to access record out of range");
             return Err(SheetError::IndexOutOfBounds);
         }
         self.records.remove(index);
@@ -87,6 +92,7 @@ impl Sheet {
     }
     pub fn edit(&mut self, index: usize, mut record: Record) -> Result <(), SheetError> {
         if index >= self.len() {
+            Self::log_error(&"Trying to access record out of range");
             return Err(SheetError::IndexOutOfBounds);
         }
         record.id_set(self.records[index].id());

@@ -77,12 +77,18 @@ impl Default for Record {
 
 #[allow(dead_code)]
 impl Record {
+    fn log_error(message: &str) {
+        eprintln!("RECORD ERROR: {}", message);
+    }
+//    fn log(message: &str) {
+//        eprintln!("RECORD LOG: {}");
+//    }
     pub fn parse_value(value_zl: &str, value_gr: &str) -> Result<i64, ValueError> {
         let zl = if value_zl.is_empty() { 0 } else {
             match value_zl.parse::<i64>() {
                 Ok(zl) => zl,
                 Err(_error) => {
-                    eprintln!("Failed to parse zl from input, {}", RecordError::ValueError(ValueError::InvalidValueZl).message());
+                    Self::log_error(&format!("Failed to parse zl from input, {}", RecordError::ValueError(ValueError::InvalidValueZl).message()));
                     return Err(ValueError::InvalidValueZl);
                 }
             }
@@ -91,7 +97,7 @@ impl Record {
             match value_gr.parse::<i64>() {
                 Ok(gr) => gr,
                 Err(_error) => {
-                    eprintln!("Failed to parse gr from input, {}", RecordError::ValueError(ValueError::InvalidValueGr).message());
+                    Self::log_error(&format!("Failed to parse gr from input, {}", RecordError::ValueError(ValueError::InvalidValueGr).message()));
                     return Err(ValueError::InvalidValueGr);
                 }
             }
@@ -119,7 +125,7 @@ impl Record {
         match NaiveDate::from_ymd_opt(*year, *month, *day) {
             Some(date_from_parse) => date = date_from_parse,
             None => {
-                eprintln!("Failed to parse input into date");
+                Self::log_error(&format!("Failed to parse input into date"));
                 return Err(RecordError::InvalidYear);
             }
         }
@@ -127,7 +133,7 @@ impl Record {
         match Self::parse_value(value_zl, value_gr) {
             Ok(value_from_parse) => value = value_from_parse,
             Err(_error) => {
-                eprintln!("Failed to parse input into value, {}", RecordError::ValueError(ValueError::InvalidValueZl).message());
+                Self::log_error(&format!("Failed to parse input into value, {}", RecordError::ValueError(ValueError::InvalidValueZl).message()));
                 return Err(RecordError::ValueError(ValueError::InvalidValueZl));
             }
         }
@@ -184,7 +190,7 @@ impl Record {
     pub fn date_set(&mut self, year: &i32, month: &u32, day: &u32) {
         match NaiveDate::from_ymd_opt(*year, *month, *day) {
             Some(date) => self.date = date,
-            None => eprintln!("Failed to parse input into date"),
+            None => Self::log_error(&format!("Failed to parse input into date")),
         }
     }
 }
