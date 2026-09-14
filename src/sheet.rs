@@ -85,10 +85,11 @@ impl Sheet {
         self.records.remove(index);
         Ok(())
     }
-    pub fn edit(&mut self, index: usize, record: Record) -> Result <(), SheetError> {
+    pub fn edit(&mut self, index: usize, mut record: Record) -> Result <(), SheetError> {
         if index >= self.len() {
             return Err(SheetError::IndexOutOfBounds);
         }
+        record.id_set(self.records[index].id());
         self.records[index] = record;
         Ok(())
     }
