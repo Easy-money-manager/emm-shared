@@ -4,6 +4,18 @@ use crate::sheetcollection::SheetCollection;
 
 
 #[derive(Serialize, Deserialize)]
+pub struct RegisterRequest {
+    pub username: String;
+    pub password: String;
+}
+
+#[derive(Serialize, Deserialize)]
+pub struct LoginRequest {
+    pub username: String;
+    pub password: String;
+}
+
+#[derive(Serialize, Deserialize)]
 pub struct CreateRecordRequest {
     pub description: String,
     pub date: chrono::NaiveDate,
