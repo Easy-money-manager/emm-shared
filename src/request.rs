@@ -1,18 +1,20 @@
 use serde::{ Serialize, Deserialize };
+#[allow(unused_imports)]
 use crate::record::Record;
+#[allow(unused_imports)]
 use crate::sheetcollection::SheetCollection;
 
 
 #[derive(Serialize, Deserialize)]
 pub struct RegisterRequest {
-    pub username: String;
-    pub password: String;
+    pub username: String,
+    pub password: String,
 }
 
 #[derive(Serialize, Deserialize)]
 pub struct LoginRequest {
-    pub username: String;
-    pub password: String;
+    pub username: String,
+    pub password: String,
 }
 
 #[derive(Serialize, Deserialize)]

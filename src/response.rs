@@ -1,5 +1,7 @@
 use serde::{ Serialize, Deserialize };
+#[allow(unused_imports)]
 use crate::record::Record;
+#[allow(unused_imports)]
 use crate::sheetcollection::SheetCollection;
 
 
@@ -11,9 +13,9 @@ use crate::sheetcollection::SheetCollection;
 
 #[derive(Serialize, Deserialize)]
 pub struct LoginResponse {
-    pub user_id: i64;
-    pub username: String;
-    pub session_token: String;
+    pub user_id: i64,
+    pub username: String,
+    pub session_token: String,
 }
 
 #[derive(Serialize, Deserialize)]
