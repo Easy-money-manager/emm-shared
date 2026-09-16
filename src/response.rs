@@ -16,6 +16,7 @@ pub struct LoginResponse {
     pub user_id: i64,
     pub username: String,
     pub session_token: String,
+    pub bootstrap: BootstrapResponse,
 }
 
 #[derive(Serialize, Deserialize)]
