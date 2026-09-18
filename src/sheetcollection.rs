@@ -32,6 +32,16 @@ impl SheetCollection {
     pub fn len(&self) -> usize {
         self.sheets.len()
     }
+    pub fn balance(&self) -> i64 {
+        let mut balance = sheet[0].sum();
+        for sheet in sheets[1..sheets.len()] {
+            balance -= sheet.sum();
+        }
+        balance
+    }
+    pub fn balance_display(&self) -> String {
+        (self.balance() as f64 / 100.0).to_string()
+    }
 
     pub fn active_sheet_index(&self) -> usize {
         self.active_sheet
