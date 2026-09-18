@@ -33,8 +33,8 @@ impl SheetCollection {
         self.sheets.len()
     }
     pub fn balance(&self) -> i64 {
-        let mut balance = sheet[0].sum();
-        for sheet in sheets[1..sheets.len()] {
+        let mut balance = self.sheets[0].sum();
+        for sheet in self.sheets[1..self.sheets.len()] {
             balance -= sheet.sum();
         }
         balance
