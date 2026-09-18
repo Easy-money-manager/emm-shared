@@ -34,7 +34,7 @@ impl SheetCollection {
     }
     pub fn balance(&self) -> i64 {
         let mut balance = self.sheets[0].sum();
-        for sheet in self.sheets[1..self.sheets.len()] {
+        for sheet in &self.sheets[1..self.sheets.len()] {
             balance -= sheet.sum();
         }
         balance
