@@ -33,3 +33,8 @@ pub struct GetRecordsResponse {
 pub struct CreateRecordResponse {
     pub id: i64,
 }
+
+#[derive(Serialize, Deserialize)]
+pub struct ImportSheetResponse {
+    pub records: Vec<Recrod>,
+}

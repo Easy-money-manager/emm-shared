@@ -17,10 +17,6 @@ pub struct LoginRequest {
     pub password: String,
 }
 
-//#[derive(Serialize, Deserialize)]
-//pub struct BootstrapRequest {
-//}
-
 #[derive(Serialize, Deserialize)]
 pub struct CreateRecordRequest {
     pub description: String,
@@ -35,6 +31,7 @@ pub struct UpdateRecordRequest {
     pub value: i64,
 }
 
-//#[derive(Serialize)]
-//pub struct RemoveRecordRequest {
-//}
+#[derive(Serialize, Deserialize)]
+pub struct ImportSheetRequest {
+    pub records Vec<ParsedImportRecord>;
+}
