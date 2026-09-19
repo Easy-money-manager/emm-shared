@@ -5,12 +5,6 @@ use crate::record::Record;
 use crate::sheetcollection::SheetCollection;
 
 
-//#[derive(Serialize, Deserialize)]
-//pub struct RegisterResponse {
-//    pub user_id: i64;
-//    pub username: String;
-//}
-
 #[derive(Serialize, Deserialize)]
 pub struct LoginResponse {
     pub user_id: i64,
