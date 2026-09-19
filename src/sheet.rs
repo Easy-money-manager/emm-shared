@@ -6,14 +6,13 @@ pub enum SheetError {
     IndexOutOfBounds,
 }
 
-// Sheet
-//
-// name - name of sheet
-// records - list (Vec<Record>) with records to store informations about money flow
-// fraction - how much of your incomes you wanna commit to this type of money flow,
-// tho save as with Record::value it's i64 and just getting divided by 100 for 
-// calculations, so for example if for essential things you wanna spend up to 50%
-// of your income it's fraction 50 (50% = 50 (= fraction) / 100)
+pub(super) enum RecordSorting {
+    DateAscending,
+    DateDescending,
+    ValueAscending,
+    ValueDescending,
+}
+
 
 #[derive(Serialize, Deserialize)]
 pub struct Sheet {
@@ -22,17 +21,6 @@ pub struct Sheet {
     pub records: Vec<Record>,
     pub fraction: i64,
 }
-
-/*impl Default for Sheet {
-    fn default() -> Self {
-        Self {
-            id: 0,
-            name: String::new(),
-            records: Vec::new(),
-            fraction: 0,
-        }
-    }
-}*/
 
 #[allow(dead_code)]
 impl Sheet {
@@ -98,6 +86,14 @@ impl Sheet {
         record.id_set(self.records[index].id());
         self.records[index] = record;
         Ok(())
+    }
+    pub fn records_sort(&mut self, record_sorting: RecordSorting) {
+        match record_sorting {
+            RecordSorting::DateDescending	=> self.records.sort_by_key(|record| { std::cmp::Reverse(record.date) } ),
+            RecordSorting::DateAscending	=> self.records.sort_by_key(|record| record.date),
+            RecordSorting::ValueDescending	=> self.records.sort_by_key(|record| { std::cmp::Reverse(record.value) }),
+            RecordSorting::ValueAscending	=> self.records.sort_by_key(|record| record.value),
+        }
     }
 }
 
