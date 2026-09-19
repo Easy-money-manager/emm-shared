@@ -6,6 +6,7 @@ pub enum SheetError {
     IndexOutOfBounds,
 }
 
+#[derive(Clone, Copy, Debug)]
 pub enum RecordSorting {
     DateAscending,
     DateDescending,
