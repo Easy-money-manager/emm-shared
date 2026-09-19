@@ -87,7 +87,7 @@ impl Sheet {
         self.records[index] = record;
         Ok(())
     }
-    pub fn records_sort(&mut self, record_sorting: RecordSorting) {
+    pub fn records_sort(&mut self, record_sorting: &RecordSorting) {
         match record_sorting {
             RecordSorting::DateDescending	=> self.records.sort_by_key(|record| { std::cmp::Reverse(record.date) } ),
             RecordSorting::DateAscending	=> self.records.sort_by_key(|record| record.date),
