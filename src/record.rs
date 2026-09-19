@@ -95,7 +95,7 @@ impl Record {
         };
         let gr: i64 = if value_gr.is_empty() { 0 } else {
             match value_gr.parse::<i64>() {
-                Ok(gr) => if zl < 0 { gr * (-1) } else { gr },
+                Ok(gr) => if zl < 0 { -gr } else { gr },
                 Err(_error) => {
                     Self::log_error(&format!("Failed to parse gr from input, {}", RecordError::ValueError(ValueError::InvalidValueGr).message()));
                     return Err(ValueError::InvalidValueGr);
