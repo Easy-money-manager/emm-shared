@@ -49,7 +49,7 @@ impl RecordError {
     }
 }
 
-#[derive(Debug, Serializa, Deserialize)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct ParsedImportRecord {
     pub description: String,
     pub date: NaiveDate,
