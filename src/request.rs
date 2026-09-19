@@ -1,6 +1,6 @@
 use serde::{ Serialize, Deserialize };
 #[allow(unused_imports)]
-use crate::record::Record;
+use crate::record::{ Record, ParsedImportRecord };
 #[allow(unused_imports)]
 use crate::sheetcollection::SheetCollection;
 
