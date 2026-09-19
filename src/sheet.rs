@@ -6,7 +6,7 @@ pub enum SheetError {
     IndexOutOfBounds,
 }
 
-pub(super) enum RecordSorting {
+pub enum RecordSorting {
     DateAscending,
     DateDescending,
     ValueAscending,
