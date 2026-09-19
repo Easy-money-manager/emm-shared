@@ -33,5 +33,5 @@ pub struct UpdateRecordRequest {
 
 #[derive(Serialize, Deserialize)]
 pub struct ImportSheetRequest {
-    pub records: Vec<ParsedImportRecord>;
+    pub records: Vec<ParsedImportRecord>,
 }

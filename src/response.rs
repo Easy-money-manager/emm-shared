@@ -36,5 +36,5 @@ pub struct CreateRecordResponse {
 
 #[derive(Serialize, Deserialize)]
 pub struct ImportSheetResponse {
-    pub records: Vec<Recrod>,
+    pub records: Vec<Record>,
 }
