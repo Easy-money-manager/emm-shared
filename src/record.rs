@@ -84,7 +84,7 @@ impl Record {
 //        eprintln!("RECORD LOG: {}");
 //    }
     pub fn parse_value(value_zl: &str, value_gr: &str) -> Result<i64, ValueError> {
-        let zl = if value_zl.is_empty() { 0 } else {
+        let zl: i64 = if value_zl.is_empty() { 0 } else {
             match value_zl.parse::<i64>() {
                 Ok(zl) => zl,
                 Err(_error) => {
@@ -93,9 +93,9 @@ impl Record {
                 }
             }
         };
-        let gr = if value_gr.is_empty() { 0 } else {
+        let gr: i64 = if value_gr.is_empty() { 0 } else {
             match value_gr.parse::<i64>() {
-                Ok(gr) => gr,
+                Ok(gr) => if zl < 0 { gr * (-1) } else { gr },
                 Err(_error) => {
                     Self::log_error(&format!("Failed to parse gr from input, {}", RecordError::ValueError(ValueError::InvalidValueGr).message()));
                     return Err(ValueError::InvalidValueGr);
@@ -103,7 +103,7 @@ impl Record {
             }
         };
         if gr.abs() >= 100 { return Err(ValueError::TooBigGr); }
-        Ok(zl * 100 + gr)
+        Ok(zl * 100 + gr )
     }
     #[allow(unused_assignments)]
     pub fn from_input(description: &str, year: &i32, month: &u32, day: &u32, value_zl: &str, value_gr: &str) -> Result<Self, RecordError> {
