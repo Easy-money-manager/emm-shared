@@ -8,6 +8,8 @@ pub enum SheetError {
 
 #[derive(Clone, Copy, Debug)]
 pub enum RecordSorting {
+    DescriptionAscending,
+    DescriptionDescending,
     DateAscending,
     DateDescending,
     ValueAscending,
@@ -90,6 +92,8 @@ impl Sheet {
     }
     pub fn records_sort(&mut self, record_sorting: RecordSorting) {
         match record_sorting {
+            RecordSorting::DescriptionDescending	=> self.records.sort_by_key(|record| { std::cmp::Reverse(record.description) } ),
+            RecordSorting::DescriptionAscending	=> self.records.sort_by_key(|record| record.description),
             RecordSorting::DateDescending	=> self.records.sort_by_key(|record| { std::cmp::Reverse(record.date) } ),
             RecordSorting::DateAscending	=> self.records.sort_by_key(|record| record.date),
             RecordSorting::ValueDescending	=> self.records.sort_by_key(|record| { std::cmp::Reverse(record.value) }),
